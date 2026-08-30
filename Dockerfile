@@ -1,10 +1,10 @@
 FROM node:22-bookworm-slim
 
-# Install OmniRoute globally
 RUN npm install -g omniroute
 
-# Koyeb provides PORT automatically
 ENV NODE_ENV=production
+ENV OMNIROUTE_SERVER_HOST=0.0.0.0
+ENV REQUIRE_API_KEY=true
+ENV AUTH_COOKIE_SECURE=true
 
-# Start OmniRoute
-CMD ["sh", "-c", "omniroute serve --port ${PORT} --no-open"]
+CMD ["sh", "-c", "exec omniroute serve --port ${PORT} --no-open --log"]
