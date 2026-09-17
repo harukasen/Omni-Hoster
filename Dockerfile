@@ -1,12 +1,12 @@
-FROM codercom/code-server:latest
+FROM gitpod/openvscode-server:latest
 
 USER root
 
 RUN mkdir -p /workspace \
-    && chown -R coder:coder /workspace
+    && chown -R openvscode-server:openvscode-server /workspace
 
-USER coder
+USER openvscode-server
 
-EXPOSE 8080
+EXPOSE 3000
 
-CMD ["code-server", "--bind-addr", "0.0.0.0:8080", "--auth", "password", "/workspace"]
+CMD ["--host=0.0.0.0", "--without-connection-token", "/workspace"]
